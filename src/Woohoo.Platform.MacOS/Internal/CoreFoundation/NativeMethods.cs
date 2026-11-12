@@ -12,15 +12,15 @@ internal static partial class NativeMethods
 {
     private const string CoreFoundationLibrary = "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation";
 
-    public static IntPtr CreateCFString(string text)
-        => CFStringCreateWithCString(IntPtr.Zero, text, 0x08000100); // kCFStringEncodingUTF8
+    public static nint CreateCFString(string text)
+        => CFStringCreateWithCString(nint.Zero, text, 0x08000100); // kCFStringEncodingUTF8
 
     [LibraryImport(CoreFoundationLibrary, StringMarshalling = StringMarshalling.Utf8)]
     public static partial IntPtr CFStringCreateWithCString(IntPtr alloc, string cStr, uint encoding);
 
     [LibraryImport(CoreFoundationLibrary)]
-    public static partial void CFRelease(IntPtr handle);
+    public static partial void CFRelease(nint handle);
 
     [LibraryImport(CoreFoundationLibrary)]
-    public static partial long CFStringGetLength(IntPtr handle);
+    public static partial long CFStringGetLength(nint handle);
 }
